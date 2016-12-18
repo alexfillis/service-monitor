@@ -1,0 +1,6 @@
+#1  Capture initial requirements.
+#2  Monitors that have not been refresh should have some sort of initial status indicating that.
+#3  Monitors that have been successfully refreshed should provide a success status.
+#4  Monitors that have failed with an exception when refreshing should provide a failure status.
+#5  Monitors that have have a received a response that is not recognised to indicate success should provide failure
+    status.
