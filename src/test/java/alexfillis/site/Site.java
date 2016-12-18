@@ -1,7 +1,5 @@
 package alexfillis.site;
 
-public class Site {
-    public String ping() {
-        return null;
-    }
+public interface Site {
+    String ping();
 }
