@@ -10,3 +10,7 @@
     return a disabled status.
 #9  Add support for muting a monitor: Meaning that it should continue to call the thing that it is monitoring but
     should return a muted status.
+#10 Review and refine requirements.
+#11 Support custom checked exceptions being thrown by the thing being monitored.
+#12 Support enabling a disabled monitor.
+#13 Support un-muting a muted monitor.
