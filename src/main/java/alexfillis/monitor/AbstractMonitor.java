@@ -46,5 +46,5 @@ public abstract class AbstractMonitor implements Monitor {
         muted = true;
     }
 
-    protected abstract void refreshInternal() throws IOException;
+    protected abstract void refreshInternal() throws Exception;
 }

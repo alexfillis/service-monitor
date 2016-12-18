@@ -10,7 +10,7 @@ public class SiteMonitor extends AbstractMonitor {
         this.site = site;
     }
 
-    protected void refreshInternal() {
+    protected void refreshInternal() throws SiteException {
         String response = site.ping();
         if ("SUCCESS".equals(response)) {
             success();

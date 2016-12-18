@@ -2,6 +2,7 @@ package test.alexfillis.site;
 
 import alexfillis.monitor.Monitor;
 import alexfillis.site.Site;
+import alexfillis.site.SiteException;
 import alexfillis.site.SiteMonitor;
 import org.junit.Test;
 
@@ -37,7 +38,7 @@ public class SiteMonitorTest {
     @Test
     public void failure_status_after_refresh_exception_failure() throws Exception {
         // given
-        when(site.ping()).thenThrow(new RuntimeException());
+        when(site.ping()).thenThrow(new SiteException());
         monitor.refresh();
 
         // when
