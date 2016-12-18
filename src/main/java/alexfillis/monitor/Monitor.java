@@ -7,6 +7,8 @@ public interface Monitor {
 
     void disable();
 
+    void mute();
+
     class Status {
         private final Result result;
 
@@ -18,6 +20,6 @@ public interface Monitor {
             return result;
         }
 
-        public enum Result {success, failure, disabled, none}
+        public enum Result {success, failure, disabled, muted, none}
     }
 }

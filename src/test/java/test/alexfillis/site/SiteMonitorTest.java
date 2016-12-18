@@ -73,4 +73,17 @@ public class SiteMonitorTest {
         verify(site, never()).ping();
         assertEquals(Monitor.Status.Result.disabled, status.getResult());
     }
+
+    @Test
+    public void muted_status_after_muting_monitor() throws Exception {
+        // given
+        monitor.mute();
+        monitor.refresh();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        assertEquals(Monitor.Status.Result.muted, status.getResult());
+    }
 }

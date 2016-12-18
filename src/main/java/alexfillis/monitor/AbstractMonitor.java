@@ -6,9 +6,14 @@ import static alexfillis.monitor.Monitor.Status.Result.*;
 
 public abstract class AbstractMonitor implements Monitor {
     private volatile Status status = new Status(none);
+    private volatile boolean muted;
 
     public final Status status() {
-        return status;
+        if (!muted) {
+            return status;
+        } else {
+            return new Status(Status.Result.muted);
+        }
     }
 
     protected final void failure() {
@@ -35,6 +40,10 @@ public abstract class AbstractMonitor implements Monitor {
 
     public void disable() {
         status = new Status(disabled);
+    }
+
+    public void mute() {
+        muted = true;
     }
 
     protected abstract void refreshInternal() throws IOException;
