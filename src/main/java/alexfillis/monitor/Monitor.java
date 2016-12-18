@@ -3,6 +3,8 @@ package alexfillis.monitor;
 public interface Monitor {
     Status status();
 
+    void refresh();
+
     class Status {
         private final Result result;
 
@@ -14,6 +16,6 @@ public interface Monitor {
             return result;
         }
 
-        public enum Result {none}
+        public enum Result {success, none}
     }
 }

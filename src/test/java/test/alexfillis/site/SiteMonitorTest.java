@@ -21,4 +21,16 @@ public class SiteMonitorTest {
         assertEquals(Monitor.Status.Result.none, status.getResult());
     }
 
+    @Test
+    public void success_status_after_refresh_success() throws Exception {
+        // given
+        monitor.refresh();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        assertEquals(Monitor.Status.Result.success, status.getResult());
+    }
+
 }
