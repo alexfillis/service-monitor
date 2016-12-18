@@ -5,6 +5,8 @@ public interface Monitor {
 
     void refresh();
 
+    void disable();
+
     class Status {
         private final Result result;
 
@@ -16,6 +18,6 @@ public interface Monitor {
             return result;
         }
 
-        public enum Result {success, failure, none}
+        public enum Result {success, failure, disabled, none}
     }
 }

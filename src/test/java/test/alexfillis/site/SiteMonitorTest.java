@@ -6,8 +6,7 @@ import alexfillis.site.SiteMonitor;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class SiteMonitorTest {
     private final Site site = mock(Site.class);
@@ -59,5 +58,19 @@ public class SiteMonitorTest {
 
         // then
         assertEquals(Monitor.Status.Result.failure, status.getResult());
+    }
+
+    @Test
+    public void disabled_monitor_should_not_call_what_it_is_monitoring() throws Exception {
+        // given
+        monitor.disable();
+        monitor.refresh();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        verify(site, never()).ping();
+        assertEquals(Monitor.Status.Result.disabled, status.getResult());
     }
 }

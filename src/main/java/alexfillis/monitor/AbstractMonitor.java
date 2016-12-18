@@ -2,9 +2,7 @@ package alexfillis.monitor;
 
 import java.io.IOException;
 
-import static alexfillis.monitor.Monitor.Status.Result.failure;
-import static alexfillis.monitor.Monitor.Status.Result.none;
-import static alexfillis.monitor.Monitor.Status.Result.success;
+import static alexfillis.monitor.Monitor.Status.Result.*;
 
 public abstract class AbstractMonitor implements Monitor {
     private volatile Status status = new Status(none);
@@ -23,10 +21,20 @@ public abstract class AbstractMonitor implements Monitor {
 
     public final void refresh() {
         try {
-            refreshInternal();
+            if (!disabled()) {
+                refreshInternal();
+            }
         } catch (Exception e) {
             failure();
         }
+    }
+
+    private boolean disabled() {
+        return status.getResult().equals(disabled);
+    }
+
+    public void disable() {
+        status = new Status(disabled);
     }
 
     protected abstract void refreshInternal() throws IOException;
