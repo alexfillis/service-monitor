@@ -25,6 +25,7 @@ public class SiteMonitorTest {
     @Test
     public void success_status_after_refresh_success() throws Exception {
         // given
+        when(site.ping()).thenReturn("SUCCESS");
         monitor.refresh();
 
         // when
@@ -38,6 +39,19 @@ public class SiteMonitorTest {
     public void failure_status_after_refresh_exception_failure() throws Exception {
         // given
         when(site.ping()).thenThrow(new RuntimeException());
+        monitor.refresh();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        assertEquals(Monitor.Status.Result.failure, status.getResult());
+    }
+
+    @Test
+    public void failure_status_after_unsuccessful_refresh_response() throws Exception {
+        // given
+        when(site.ping()).thenReturn("FAIL");
         monitor.refresh();
 
         // when

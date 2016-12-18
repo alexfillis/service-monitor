@@ -21,8 +21,12 @@ public class SiteMonitor implements Monitor {
 
     public void refresh() {
         try {
-            site.ping();
-            status = new Status(success);
+            String response = site.ping();
+            if ("SUCCESS".equals(response)) {
+                status = new Status(success);
+            } else {
+                status = new Status(failure);
+            }
         } catch (Exception e) {
             status = new Status(failure);
         }
