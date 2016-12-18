@@ -14,3 +14,5 @@
 #11 Support custom checked exceptions being thrown by the thing being monitored.
 #12 Support enabling a disabled monitor.
 #13 Support un-muting a muted monitor.
+#14 Review and refine requirements.
+#15 Add support for grouping monitors together.
