@@ -1,34 +1,21 @@
 package alexfillis.site;
 
-import alexfillis.monitor.Monitor;
+import alexfillis.monitor.AbstractMonitor;
 
-import static alexfillis.monitor.Monitor.Status.Result.failure;
-import static alexfillis.monitor.Monitor.Status.Result.none;
-import static alexfillis.monitor.Monitor.Status.Result.success;
-
-public class SiteMonitor implements Monitor {
+public class SiteMonitor extends AbstractMonitor {
 
     private final Site site;
-    private Status status = new Status(none);
 
     public SiteMonitor(Site site) {
         this.site = site;
     }
 
-    public Status status() {
-        return status;
-    }
-
-    public void refresh() {
-        try {
-            String response = site.ping();
-            if ("SUCCESS".equals(response)) {
-                status = new Status(success);
-            } else {
-                status = new Status(failure);
-            }
-        } catch (Exception e) {
-            status = new Status(failure);
+    protected void refreshInternal() {
+        String response = site.ping();
+        if ("SUCCESS".equals(response)) {
+            success();
+        } else {
+            failure();
         }
     }
 }

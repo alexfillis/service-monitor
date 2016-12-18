@@ -1,35 +1,24 @@
 package alexfillis.file;
 
-import alexfillis.monitor.Monitor;
+import alexfillis.monitor.AbstractMonitor;
 
-import static alexfillis.monitor.Monitor.Status.Result.failure;
-import static alexfillis.monitor.Monitor.Status.Result.none;
-import static alexfillis.monitor.Monitor.Status.Result.success;
+import java.io.IOException;
 
-public class FileMonitor implements Monitor {
+public class FileMonitor extends AbstractMonitor {
     private final FileSystem fileSystem;
     private final String pathMonitoring;
-    private Status status = new Status(none);
 
     public FileMonitor(FileSystem fileSystem, String pathMonitoring) {
         this.fileSystem = fileSystem;
         this.pathMonitoring = pathMonitoring;
     }
 
-    public Status status() {
-        return status;
-    }
-
-    public void refresh() {
-        try {
-            boolean exists = fileSystem.exists(pathMonitoring);
-            if (exists) {
-                status = new Status(success);
-            } else {
-                status = new Status(failure);
-            }
-        } catch (Exception e) {
-            status = new Status(failure);
+    protected void refreshInternal() throws IOException {
+        boolean exists = fileSystem.exists(pathMonitoring);
+        if (exists) {
+            success();
+        } else {
+            failure();
         }
     }
 }
