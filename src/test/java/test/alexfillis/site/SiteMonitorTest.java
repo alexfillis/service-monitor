@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class SiteMonitorTest {
     private final Site site = mock(Site.class);
@@ -33,4 +34,16 @@ public class SiteMonitorTest {
         assertEquals(Monitor.Status.Result.success, status.getResult());
     }
 
+    @Test
+    public void failure_status_after_refresh_exception_failure() throws Exception {
+        // given
+        when(site.ping()).thenThrow(new RuntimeException());
+        monitor.refresh();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        assertEquals(Monitor.Status.Result.failure, status.getResult());
+    }
 }

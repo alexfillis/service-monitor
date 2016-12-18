@@ -16,6 +16,6 @@ public interface Monitor {
             return result;
         }
 
-        public enum Result {success, none}
+        public enum Result {success, failure, none}
     }
 }
