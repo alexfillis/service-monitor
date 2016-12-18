@@ -106,13 +106,29 @@ public class SiteMonitorTest {
     @Test
     public void muted_status_after_muting_monitor() throws Exception {
         // given
-        monitor.mute();
         monitor.refresh();
+        monitor.mute();
 
         // when
         Monitor.Status status = monitor.status();
 
         // then
         assertEquals(Monitor.Status.Result.muted, status.getResult());
+    }
+
+    @Test
+    public void muted_monitor_that_is_unmuted_will_return_last_status() throws Exception {
+        // given
+        monitor.refresh();
+        Monitor.Status statusBeforeMute = monitor.status();
+
+        monitor.mute();
+        monitor.unmute();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        assertEquals(statusBeforeMute, status);
     }
 }

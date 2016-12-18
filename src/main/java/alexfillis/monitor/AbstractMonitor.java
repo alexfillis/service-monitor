@@ -48,5 +48,9 @@ public abstract class AbstractMonitor implements Monitor {
         muted = true;
     }
 
+    public void unmute() {
+        muted = false;
+    }
+
     protected abstract void refreshInternal() throws Exception;
 }
