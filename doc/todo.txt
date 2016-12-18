@@ -4,3 +4,9 @@
 #4  Monitors that have failed with an exception when refreshing should provide a failure status.
 #5  Monitors that have have a received a response that is not recognised to indicate success should provide failure
     status.
+#6  Review and refine requirements.
+#7  Add additional example monitor to drive out code structure for multiple Monitor instances.
+#8  Add support for disabling a monitor: Meaning that it should not call the thing that it is monitoring and should
+    return a disabled status.
+#9  Add support for muting a monitor: Meaning that it should continue to call the thing that it is monitoring but
+    should return a muted status.
