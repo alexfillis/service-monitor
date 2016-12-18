@@ -76,6 +76,34 @@ public class SiteMonitorTest {
     }
 
     @Test
+    public void none_status_for_disabled_monitor_that_is_enabled_but_not_refreshed() throws Exception {
+        // given
+        monitor.disable();
+        monitor.enable();
+
+        // when
+        Monitor.Status status = monitor.status();
+
+        // then
+        verify(site, never()).ping();
+        assertEquals(Monitor.Status.Result.none, status.getResult());
+    }
+
+    @Test
+    public void disabled_monitor_that_is_enabled_and_refreshed_calls_thing_monitoring() throws Exception {
+        // given
+        monitor.disable();
+        monitor.enable();
+        monitor.refresh();
+
+        // when
+        monitor.status();
+
+        // then
+        verify(site).ping();
+    }
+
+    @Test
     public void muted_status_after_muting_monitor() throws Exception {
         // given
         monitor.mute();

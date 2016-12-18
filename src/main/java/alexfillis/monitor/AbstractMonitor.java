@@ -1,7 +1,5 @@
 package alexfillis.monitor;
 
-import java.io.IOException;
-
 import static alexfillis.monitor.Monitor.Status.Result.*;
 
 public abstract class AbstractMonitor implements Monitor {
@@ -36,6 +34,10 @@ public abstract class AbstractMonitor implements Monitor {
 
     private boolean disabled() {
         return status.getResult().equals(disabled);
+    }
+
+    public void enable() {
+        status = new Status(none);
     }
 
     public void disable() {

@@ -9,10 +9,12 @@ public interface Monitor {
 
     void mute();
 
+    void enable();
+
     class Status {
         private final Result result;
 
-        public Status(Result result) {
+        Status(Result result) {
             this.result = result;
         }
 
