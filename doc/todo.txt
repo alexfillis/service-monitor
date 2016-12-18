@@ -16,3 +16,4 @@
 #13 Support un-muting a muted monitor.
 #14 Review and refine requirements.
 #15 Add support for grouping monitors together.
+#16 Add Travis CI build.
