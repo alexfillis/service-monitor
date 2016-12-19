@@ -18,3 +18,4 @@
 #15 Add support for grouping monitors together.
 #16 Add Travis CI build.
 #17 Fix build issue with maven-compiler-plugin missing version in pom.
+#18 Fix build platform dependent issue.
