@@ -18,7 +18,7 @@ public interface Monitor {
     class Status {
         private final Result result;
 
-        Status(Result result) {
+        public Status(Result result) {
             this.result = result;
         }
 
