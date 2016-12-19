@@ -32,23 +32,4 @@ public class AggregatingMonitor extends AbstractMonitor {
             success();
         }
     }
-
-    private class StatusAggregator {
-        private final Results results;
-
-        StatusAggregator(List<Status> statuses) {
-            results = process(statuses);
-        }
-
-        private Results process(List<Status> statuses) {
-            return null;
-        }
-
-        Status status() {
-            return null;
-        }
-
-        private class Results {
-        }
-    }
 }
