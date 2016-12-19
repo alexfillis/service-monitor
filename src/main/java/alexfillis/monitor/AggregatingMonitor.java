@@ -19,17 +19,20 @@ public class AggregatingMonitor extends AbstractMonitor {
             statuses.add(monitor.status());
         }
 
+        if (failureCount(statuses) > 0) {
+            failure();
+        } else {
+            success();
+        }
+    }
+
+    private int failureCount(List<Status> statuses) {
         int failureCount = 0;
         for (Status status : statuses) {
             if (status.getResult().equals(Status.Result.failure)) {
                 failureCount++;
             }
         }
-
-        if (failureCount > 0) {
-            failure();
-        } else {
-            success();
-        }
+        return failureCount;
     }
 }
