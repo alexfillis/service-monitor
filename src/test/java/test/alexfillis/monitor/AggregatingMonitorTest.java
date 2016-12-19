@@ -5,8 +5,7 @@ import alexfillis.monitor.Monitor;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class AggregatingMonitorTest {
 
@@ -45,5 +44,18 @@ public class AggregatingMonitorTest {
 
         // then
         assertEquals(Monitor.Status.Result.success, status.getResult());
+    }
+
+    @Test
+    public void refreshing_should_refresh_all_monitors() throws Exception {
+        // given
+
+        // when
+        monitor.refresh();
+
+        // then
+        verify(monitor1, times(1)).refresh();
+        verify(monitor2, times(1)).refresh();
+        verify(monitor3, times(1)).refresh();
     }
 }
